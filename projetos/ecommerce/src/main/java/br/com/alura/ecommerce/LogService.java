@@ -1,6 +1,10 @@
 package br.com.alura.ecommerce;
 
+import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.common.serialization.StringDeserializer;
+
+import java.util.Map;
 import java.util.regex.Pattern;
 
 public class LogService {
@@ -9,7 +13,9 @@ public class LogService {
         var logService = new LogService();  // Construtor da Classe
         try(var service = new KafkaService(LogService.class.getSimpleName(),
                 Pattern.compile("ECOMMERCE.*"), // è um Pattern com Regex
-                logService::parse)) { //  emailService::parse -> methodReference, invoque essa função para cada record
+                logService::parse, //  emailService::parse -> methodReference, invoque essa função para cada record
+                String.class,
+                Map.of(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName()))) {
             service.run();
         }
     }
