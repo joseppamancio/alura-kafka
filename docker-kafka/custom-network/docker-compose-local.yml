@@ -1,0 +1,25 @@
+services:
+  zookeeper:
+    image: docker.io/bitnami/zookeeper:3.8
+    volumes:
+      - "zookeeper_data:/bitnami"
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+    network_mode: "host"
+
+  kafka:
+    image: docker.io/bitnami/kafka:3.2
+    volumes:
+      - "kafka_data:/bitnami"
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=127.0.0.1:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    depends_on:
+      - zookeeper
+    network_mode: "host"
+
+volumes:
+  zookeeper_data:
+    driver: local
+  kafka_data:
+    driver: local

@@ -1,0 +1,2 @@
+docker start docker-kafka_zookeeper_1
+docker start docker-kafka_kafka_1
