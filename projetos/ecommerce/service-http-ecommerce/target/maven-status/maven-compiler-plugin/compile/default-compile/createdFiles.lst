@@ -1,0 +1,3 @@
+br\com\alura\ecommerce\Order.class
+br\com\alura\ecommerce\NewOrderServlet.class
+br\com\alura\ecommerce\HttpEcommerceService.class

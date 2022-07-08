@@ -20,7 +20,7 @@ class KafkaDispatcher<T> implements Closeable { //Cloaseable permite que porta s
         properties.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.31.97:9092");  //Configurando Endereço do Server ou 172.22.0.3
         properties.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());   // Tranforma bites em String - Key
         properties.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, GsonSerializer.class.getName()); // Tranforma bites em Gson - Value
-        properties.setProperty(ProducerConfig.ACKS_CONFIG, "all"); //Aguarda todos os brokers sincronizarem para enviar confirmação
+        properties.setProperty(ProducerConfig.ACKS_CONFIG, "all"); //Aguarda todos os brokers sincronizarem para enviar retorno
         return properties;
     }
     void send(String topic, String key, T value) throws ExecutionException, InterruptedException {

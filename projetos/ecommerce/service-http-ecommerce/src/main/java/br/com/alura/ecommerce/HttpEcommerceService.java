@@ -12,6 +12,8 @@ public class HttpEcommerceService {
         var context = new ServletContextHandler();
         context.setContextPath("/");
         context.addServlet(new ServletHolder(new NewOrderServlet()),"/new"); // novo pedido
+        context.addServlet(new ServletHolder(new GenerateAllReportsServlet()),"/admin/generate-reports"); // gera relatorio de uuids
+
 
         server.setHandler(context);
 
