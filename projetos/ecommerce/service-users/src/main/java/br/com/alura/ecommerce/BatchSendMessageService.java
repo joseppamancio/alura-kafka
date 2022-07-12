@@ -42,14 +42,14 @@ public class BatchSendMessageService {
     private final KafkaDispatcher<User> userDispatcher = new KafkaDispatcher<>();
 
     // Parse faz um query trazendo uma lista de usuários, e cria essa lista em um topico 'USER_GENERATE_READING_REPORT' que foi recebido
-    private void parse(ConsumerRecord<String, String> record) throws SQLException, ExecutionException, InterruptedException {
+    private void parse(ConsumerRecord<String, Message<String>> record) throws SQLException, ExecutionException, InterruptedException {
         System.out.println("---------------------------------------------");
         System.out.println("Processing new batch");
-        System.out.println("Topic: " + record.value());
-        var order = record.value();
+        var message = record.value();
+        System.out.println("Topic: " + message.getPayload());
 
         for(User user : getAllUsers()){
-            userDispatcher.send(record.value(), user.getUuid(), user); // envia para o topico 'USER_GENERATE_READING_REPORT' o ID do usuário criando uma lista
+            userDispatcher.send(message.getPayload(), user.getUuid(), user); // envia para o topico 'USER_GENERATE_READING_REPORT' o ID do usuário criando uma lista
         }
     }
 

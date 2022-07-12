@@ -34,11 +34,12 @@ public class CreateUserService {
             service.run();
         }
     }
-    private void parse(ConsumerRecord<String, Order> record) throws SQLException {
+    private void parse(ConsumerRecord<String, Message<Order>> record) throws SQLException {
         System.out.println("---------------------------------------------");
         System.out.println("Processando new order, checking for new user");
-        System.out.println(record.value());
-        var order = record.value();
+        var message = record.value();
+        System.out.println(message.getPayload());
+        var order = message.getPayload();
         if(isNewUser(order.getEmail())){
             insertNewUser(order.getEmail());
         }

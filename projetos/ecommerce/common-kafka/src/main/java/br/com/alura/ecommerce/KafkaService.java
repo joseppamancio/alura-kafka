@@ -10,19 +10,18 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Properties;
 import java.util.UUID;
-import java.util.concurrent.ExecutionException;
 import java.util.regex.Pattern;
 
 class KafkaService<T> implements Closeable { //Cloaseable permite que porta seja encerrada
-    private final KafkaConsumer<String, T> consumer;
+    private final KafkaConsumer<String, Message<T>> consumer;
     private final ConsumerFunction parse;
 
-    KafkaService(String groupId, String topic, ConsumerFunction parse, Class<T> type, Map<String, String> properties) { // Construtor com Topico
+    KafkaService(String groupId, String topic, ConsumerFunction<T> parse, Class<T> type, Map<String, String> properties) { // Construtor com Topico
         this(parse, groupId, type, properties);
         consumer.subscribe(Collections.singletonList(topic));
     }
 
-    public KafkaService(String groupId, Pattern topic, ConsumerFunction parse,  Class<T> type, Map<String, String> properties) { //Construtor com Pattern
+    public KafkaService(String groupId, Pattern topic, ConsumerFunction<T> parse,  Class<T> type, Map<String, String> properties) { //Construtor com Pattern
         this(parse, groupId, type, properties);
         consumer.subscribe(topic);
     }
@@ -56,7 +55,6 @@ class KafkaService<T> implements Closeable { //Cloaseable permite que porta seja
         properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, groupId); // Necessário dar nome para quem é o consumidor, com isso temos o nome da classe
         properties.setProperty(ConsumerConfig.CLIENT_ID_CONFIG, UUID.randomUUID().toString()); // ID do Consumidor, quando há mais de consumidores por grupo
         properties.setProperty(ConsumerConfig.MAX_POLL_RECORDS_CONFIG,"1"); // Commit de mensagens de 1 em 1
-        properties.setProperty(GsonDeserializer.TYPE_CONFIG, type.getName()); // Tipo que usaremos para deserializar os dados no GSON
         properties.putAll(overrideProperties); // tudo que vem de Override vai para properties, podendo ser prorpiedades extras
         return properties;
     }

@@ -11,7 +11,7 @@ import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 
 class KafkaDispatcher<T> implements Closeable { //Cloaseable permite que porta seja encerrada
-    private final KafkaProducer<String, T> producer;
+    private final KafkaProducer<String, Message<T>> producer; // Message é o Objeto com cabeçalho
     KafkaDispatcher(){
         this.producer = new KafkaProducer<>(properties());
     }
@@ -23,7 +23,8 @@ class KafkaDispatcher<T> implements Closeable { //Cloaseable permite que porta s
         properties.setProperty(ProducerConfig.ACKS_CONFIG, "all"); //Aguarda todos os brokers sincronizarem para enviar retorno
         return properties;
     }
-    void send(String topic, String key, T value) throws ExecutionException, InterruptedException {
+    void send(String topic, String key, T payload) throws ExecutionException, InterruptedException {
+        var value = new Message<T>(new CorrelationId(), payload);
         var record = new ProducerRecord<>(topic, key, value);
         // Send retorna um Future, Callback com valores e exception que se diferente de null então apresenta o erro
         Callback callback = (data, ex) -> {
