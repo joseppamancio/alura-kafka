@@ -23,9 +23,11 @@ class KafkaDispatcher<T> implements Closeable { //Cloaseable permite que porta s
         properties.setProperty(ProducerConfig.ACKS_CONFIG, "all"); //Aguarda todos os brokers sincronizarem para enviar retorno
         return properties;
     }
-    void send(String topic, String key, T payload) throws ExecutionException, InterruptedException {
-        var value = new Message<T>(new CorrelationId(), payload);
+    void send(String topic, String key, CorrelationId id, T payload) throws ExecutionException, InterruptedException {
+
+        var value = new Message<>(id, payload);
         var record = new ProducerRecord<>(topic, key, value);
+
         // Send retorna um Future, Callback com valores e exception que se diferente de null então apresenta o erro
         Callback callback = (data, ex) -> {
             if (ex != null) {

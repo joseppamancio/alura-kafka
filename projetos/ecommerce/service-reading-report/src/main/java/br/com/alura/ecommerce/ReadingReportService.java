@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
 
 public class ReadingReportService {
 
@@ -15,7 +14,7 @@ public class ReadingReportService {
     public static void main(String[] args) {
         var reportService = new ReadingReportService();
         try(var service = new KafkaService<>(ReadingReportService.class.getSimpleName(), //Processo de desserialização de Order
-                "USER_GENERATE_READING_REPORT",
+                "ECOMMERCE_USER_GENERATE_READING_REPORT",
                 reportService::parse,
                 User.class,
                 Map.of())) { // Nesse service não temos propriedades extras então passamos um mapa vazio.
@@ -25,10 +24,10 @@ public class ReadingReportService {
 
     private void parse(ConsumerRecord<String, Message<User>> record) throws IOException {
         System.out.println("---------------------------------------------");
-        System.out.println("Processing report for " + record.value());
-
         var message = record.value();
         var user = message.getPayload();
+        System.out.println("Processing report for " + user);
+
         var target = new File(user.getReportPath());  // path destino, classe user gera um nome
         IO.copyTo(SOURCE, target); // copia target de um lugar para outro
         IO.append(target, "Created for " + user.getUuid());
