@@ -33,7 +33,6 @@ public class BatchSendMessageService {
         try(var service = new KafkaService<>(BatchSendMessageService.class.getSimpleName(), //Processo de desserialização de Order
                 "ECOMMERCE_SEND_MESSAGE_TO_ALL_USERS",
                 batchService::parse,
-                String.class,
                 Map.of())) { // Nesse service não temos propriedades extras então passamos um mapa vazio.
             service.run();
         }

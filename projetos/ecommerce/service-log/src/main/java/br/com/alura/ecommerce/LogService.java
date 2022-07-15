@@ -14,7 +14,6 @@ public class LogService {
         try(var service = new KafkaService(LogService.class.getSimpleName(),
                 Pattern.compile("ECOMMERCE.*"), // è um Pattern com Regex
                 logService::parse, //  emailService::parse -> methodReference, invoque essa função para cada record
-                String.class,
                 Map.of(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName()))) {
             service.run();
         }

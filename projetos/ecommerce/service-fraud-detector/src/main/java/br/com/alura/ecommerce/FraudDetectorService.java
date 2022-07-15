@@ -13,7 +13,6 @@ public class FraudDetectorService {
         try(var service = new KafkaService<>(FraudDetectorService.class.getSimpleName(), //Processo de desserialização de Order
                 "ECOMMERCE_NEW_ORDER",
                 fraudService::parse,
-                Order.class,
                 Map.of())) { // Nesse service não temos propriedades extras então passamos um mapa vazio.
             service.run();
         }

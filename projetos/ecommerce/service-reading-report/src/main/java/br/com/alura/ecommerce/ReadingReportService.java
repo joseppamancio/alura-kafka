@@ -16,7 +16,6 @@ public class ReadingReportService {
         try(var service = new KafkaService<>(ReadingReportService.class.getSimpleName(), //Processo de desserialização de Order
                 "ECOMMERCE_USER_GENERATE_READING_REPORT",
                 reportService::parse,
-                User.class,
                 Map.of())) { // Nesse service não temos propriedades extras então passamos um mapa vazio.
             service.run();
         }

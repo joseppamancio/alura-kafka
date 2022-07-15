@@ -11,14 +11,13 @@ public class EmailService {
         try(var service = new KafkaService(EmailService.class.getSimpleName(),
                 "ECOMMERCE_SEND_EMAIL",
                 emailService::parse, //  emailService::parse -> methodReference, invoque essa função para cada record
-                String.class,
                 Map.of())) { // Nesse service não temos propriedades extras então passamos um mapa vazio.
             service.run();
         }
     }
 
         // Função que será executada para cada registro
-        private void parse(ConsumerRecord < String, String > record){
+        private void parse(ConsumerRecord < String, Message<String>> record){
             System.out.println("---------------------------------------------");
             System.out.println("Send email");
             System.out.println(record.key());
