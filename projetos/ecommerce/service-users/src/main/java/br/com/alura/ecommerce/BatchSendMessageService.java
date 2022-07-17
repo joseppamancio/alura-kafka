@@ -28,7 +28,7 @@ public class BatchSendMessageService {
     }
 
     // Escuta o tópico 'SEND_MESSAGE_TO_ALL_USERS' e chama o parse para cada evento
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, ExecutionException, InterruptedException {
         var batchService = new BatchSendMessageService();
         try(var service = new KafkaService<>(BatchSendMessageService.class.getSimpleName(), //Processo de desserialização de Order
                 "ECOMMERCE_SEND_MESSAGE_TO_ALL_USERS",
@@ -48,7 +48,7 @@ public class BatchSendMessageService {
         System.out.println("Topic: " + message.getPayload());
 
         for(User user : getAllUsers()){
-            userDispatcher.send(message.getPayload(), user.getUuid(),
+            userDispatcher.sendAsync(message.getPayload(), user.getUuid(),
                     message.getId().continueWith(BatchSendMessageService.class.getSimpleName()),
                     user); // envia para o topico 'USER_GENERATE_READING_REPORT' o ID do usuário criando uma lista
         }

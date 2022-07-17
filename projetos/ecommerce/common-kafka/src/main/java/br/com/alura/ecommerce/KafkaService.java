@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Properties;
 import java.util.UUID;
+import java.util.concurrent.ExecutionException;
 import java.util.regex.Pattern;
 
 class KafkaService<T> implements Closeable { //Cloaseable permite que porta seja encerrada
@@ -31,16 +32,22 @@ class KafkaService<T> implements Closeable { //Cloaseable permite que porta seja
         this.consumer = new KafkaConsumer<>(getProperties(groupId, properties));
     }
 
-    void run() {
-        while (true) { // mantém o serviço ouvindo
-            var records = consumer.poll(Duration.ofMillis(100)); // Verifica a cada 100 milissegundos se há registros
-            if (!records.isEmpty()) {
-                System.out.println("Encontei " + records.count() + " registros");
-                for (var record : records) {
-                    try {
-                        parse.consume(record); // Para cada recorde chama-se o parse
-                    } catch (Exception e) {
-                        e.printStackTrace();
+    void run() throws ExecutionException, InterruptedException {
+        try(var deadLetter = new KafkaDispatcher<>()){
+            while (true) { // mantém o serviço ouvindo
+                var records = consumer.poll(Duration.ofMillis(100)); // Verifica a cada 100 milissegundos se há registros
+                if (!records.isEmpty()) {
+                    System.out.println("Encontei " + records.count() + " registros");
+                    for (var record : records) {
+                        try {
+                            parse.consume(record); // Para cada recorde chama-se o parse
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            var message = record.value();
+                            deadLetter.send("ECOMMERCE_DEADLETTER", message.getId().toString(),
+                                    message.getId().continueWith("DeadLetter"),
+                                    new GsonSerializer().serialize("", message));
+                        }
                     }
                 }
             }
