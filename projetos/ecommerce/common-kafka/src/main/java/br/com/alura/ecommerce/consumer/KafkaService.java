@@ -1,5 +1,8 @@
-package br.com.alura.ecommerce;
+package br.com.alura.ecommerce.consumer;
 
+import br.com.alura.ecommerce.Message;
+import br.com.alura.ecommerce.dispatcher.GsonSerializer;
+import br.com.alura.ecommerce.dispatcher.KafkaDispatcher;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -13,11 +16,11 @@ import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.regex.Pattern;
 
-class KafkaService<T> implements Closeable { //Cloaseable permite que porta seja encerrada
+public class KafkaService<T> implements Closeable { //Cloaseable permite que porta seja encerrada
     private final KafkaConsumer<String, Message<T>> consumer;
     private final ConsumerFunction parse;
 
-    KafkaService(String groupId, String topic, ConsumerFunction<T> parse, Map<String, String> properties) { // Construtor com Topico
+    public KafkaService(String groupId, String topic, ConsumerFunction<T> parse, Map<String, String> properties) { // Construtor com Topico
         this(parse, groupId, properties);
         consumer.subscribe(Collections.singletonList(topic));
     }
@@ -32,7 +35,7 @@ class KafkaService<T> implements Closeable { //Cloaseable permite que porta seja
         this.consumer = new KafkaConsumer<>(getProperties(groupId, properties));
     }
 
-    void run() throws ExecutionException, InterruptedException {
+    public void run() throws ExecutionException, InterruptedException {
         try(var deadLetter = new KafkaDispatcher<>()){
             while (true) { // mantém o serviço ouvindo
                 var records = consumer.poll(Duration.ofMillis(100)); // Verifica a cada 100 milissegundos se há registros

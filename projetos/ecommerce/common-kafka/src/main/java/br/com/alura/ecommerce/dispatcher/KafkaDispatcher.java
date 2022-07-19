@@ -1,5 +1,7 @@
-package br.com.alura.ecommerce;
+package br.com.alura.ecommerce.dispatcher;
 
+import br.com.alura.ecommerce.CorrelationId;
+import br.com.alura.ecommerce.Message;
 import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.StringSerializer;
 
@@ -8,9 +10,9 @@ import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-class KafkaDispatcher<T> implements Closeable { //Cloaseable permite que porta seja encerrada
+public class KafkaDispatcher<T> implements Closeable { //Cloaseable permite que porta seja encerrada
     private final KafkaProducer<String, Message<T>> producer; // Message é o Objeto com cabeçalho
-    KafkaDispatcher(){
+    public KafkaDispatcher(){
         this.producer = new KafkaProducer<>(properties());
     }
     private static Properties properties() {
@@ -21,13 +23,13 @@ class KafkaDispatcher<T> implements Closeable { //Cloaseable permite que porta s
         properties.setProperty(ProducerConfig.ACKS_CONFIG, "all"); //Aguarda todos os brokers sincronizarem para enviar retorno
         return properties;
     }
-    void send(String topic, String key, CorrelationId id, T payload) throws ExecutionException, InterruptedException {
+    public void send(String topic, String key, CorrelationId id, T payload) throws ExecutionException, InterruptedException {
         Future<RecordMetadata> future = sendAsync(topic, key, id, payload);
         future.get();
     }
 
-    Future<RecordMetadata> sendAsync(String topic, String key, CorrelationId id, T payload) {
-        var value = new Message<>(id, payload);
+    public Future<RecordMetadata> sendAsync(String topic, String key, CorrelationId id, T payload) {
+        var value = new Message<>(id.continueWith("_" + topic), payload);
         var record = new ProducerRecord<>(topic, key, value);
 
         // Send retorna um Future, Callback com valores e exception que se diferente de null então apresenta o erro
