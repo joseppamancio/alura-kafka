@@ -4,23 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f27c3a2c-480a-4df3-aa67-295cb3819a9b" name="Changes" comment="Implementação de DeadLetter.">
+    <list default="true" id="f27c3a2c-480a-4df3-aa67-295cb3819a9b" name="Changes" comment="Isolando camadas de preparação de email.">
+      <change afterPath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/consumer/ServiceFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/ConsumerFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/consumer/ConsumerFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/GsonDeserializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/consumer/GsonDeserializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/GsonSerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/dispatcher/GsonSerializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/KafkaDispatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/dispatcher/KafkaDispatcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/KafkaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/consumer/KafkaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-kafka/src/main/java/br/com/alura/ecommerce/Message.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service-email/src/main/java/br/com/alura/ecommerce/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-email/src/main/java/br/com/alura/ecommerce/EmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-fraud-detector/src/main/java/br/com/alura/ecommerce/FraudDetectorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-fraud-detector/src/main/java/br/com/alura/ecommerce/FraudDetectorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-http-ecommerce/src/main/java/br/com/alura/ecommerce/GenerateAllReportsServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-http-ecommerce/src/main/java/br/com/alura/ecommerce/GenerateAllReportsServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-http-ecommerce/src/main/java/br/com/alura/ecommerce/NewOrderServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-http-ecommerce/src/main/java/br/com/alura/ecommerce/NewOrderServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-log/src/main/java/br/com/alura/ecommerce/LogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-log/src/main/java/br/com/alura/ecommerce/LogService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-new-order/src/main/java/br/com/alura/ecommerce/NewOrderMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-new-order/src/main/java/br/com/alura/ecommerce/NewOrderMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-email/target/classes/br/com/alura/ecommerce/EmailService.class" beforeDir="false" afterPath="$PROJECT_DIR$/service-email/target/classes/br/com/alura/ecommerce/EmailService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service-reading-report/src/main/java/br/com/alura/ecommerce/ReadingReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-reading-report/src/main/java/br/com/alura/ecommerce/ReadingReportService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-users/src/main/java/br/com/alura/ecommerce/BatchSendMessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-users/src/main/java/br/com/alura/ecommerce/BatchSendMessageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-users/src/main/java/br/com/alura/ecommerce/CreateUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-users/src/main/java/br/com/alura/ecommerce/CreateUserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +21,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -59,7 +51,8 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;Java 11&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/Desktop/CURSOS/KAFKA/alura-kafka/projetos/ecommerce/src/main/resources&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/User/Desktop/CURSOS/KAFKA/alura-kafka/projetos/ecommerce/service-email-new-order/src/main/java/br/com/alura/ecommerce&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/Desktop/CURSOS/KAFKA/alura-kafka/projetos/ecommerce/service-email-new-order/src/main/java&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
@@ -71,6 +64,7 @@
       <recent name="br.com.alura.ecommerce" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Desktop\CURSOS\KAFKA\alura-kafka\projetos\ecommerce\service-email-new-order\src\main\java" />
       <recent name="C:\Users\User\Desktop\CURSOS\KAFKA\alura-kafka\projetos\ecommerce\src\main\resources" />
       <recent name="C:\Users\User\Desktop\CURSOS\KAFKA\alura-kafka\projetos\ecommerce\service-reading-report\src\main\java" />
     </key>
@@ -78,7 +72,7 @@
       <recent name="br.com.alura.ecommerce" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.br.com.alura.ecommerce.LogService">
+  <component name="RunManager" selected="Application.ReadingReportService">
     <configuration name="BatchSendMessageService" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="br.com.alura.ecommerce.BatchSendMessageService" />
       <module name="service-users" />
@@ -215,7 +209,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658083136619</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Isolando camadas de preparação de email.">
+      <created>1658191700191</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1658191700191</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -235,7 +236,8 @@
     <MESSAGE value="Trace do Correlation." />
     <MESSAGE value="Revisão dos Serviços." />
     <MESSAGE value="Implementação de DeadLetter." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementação de DeadLetter." />
+    <MESSAGE value="Isolando camadas de preparação de email." />
+    <option name="LAST_COMMIT_MESSAGE" value="Isolando camadas de preparação de email." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
