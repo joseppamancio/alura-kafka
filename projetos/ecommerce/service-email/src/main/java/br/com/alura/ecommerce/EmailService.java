@@ -1,37 +1,35 @@
 package br.com.alura.ecommerce;
 
+import br.com.alura.ecommerce.consumer.ConsumerService;
+import br.com.alura.ecommerce.consumer.ServiceRunner;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 
-import java.util.Map;
-
-public class EmailService {
-
+public class EmailService implements ConsumerService<String> { //Consome 'T' representando Strings
     public static void main(String[] args) {
-        var emailService = new EmailService();  // Construtor da Classe
-        try(var service = new KafkaService(EmailService.class.getSimpleName(),
-                "ECOMMERCE_SEND_EMAIL",
-                emailService::parse, //  emailService::parse -> methodReference, invoque essa função para cada record
-                String.class,
-                Map.of())) { // Nesse service não temos propriedades extras então passamos um mapa vazio.
-            service.run();
-        }
+        new ServiceRunner(EmailService::new).start(5); //permite a executar o serviço com multithread
+    }
+    public String getConsumerGroup(){
+        return EmailService.class.getSimpleName();
+    }
+    public String getTopic(){
+        return "ECOMMERCE_SEND_EMAIL";
     }
 
-        // Função que será executada para cada registro
-        private void parse(ConsumerRecord < String, String > record){
-            System.out.println("---------------------------------------------");
-            System.out.println("Send email");
-            System.out.println(record.key());
-            System.out.println(record.value());
-            System.out.println(record.partition());
-            System.out.println(record.offset());
+    // Função que será executada para cada registro
+    public void parse(ConsumerRecord < String, Message<String>> record){
+        System.out.println("---------------------------------------------");
+        System.out.println("Send email");
+        System.out.println(record.key());
+        System.out.println(record.value());
+        System.out.println(record.partition());
+        System.out.println(record.offset());
 
-            //simulando processamento
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            System.out.println("Email sent");
+        //simulando processamento
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+        System.out.println("Email sent");
+    }
 }
