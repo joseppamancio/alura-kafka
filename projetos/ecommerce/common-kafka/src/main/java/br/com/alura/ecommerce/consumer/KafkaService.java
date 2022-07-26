@@ -65,7 +65,7 @@ public class KafkaService<T> implements Closeable { //Cloaseable permite que por
         properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, groupId); // Necessário dar nome para quem é o consumidor, com isso temos o nome da classe
         properties.setProperty(ConsumerConfig.CLIENT_ID_CONFIG, UUID.randomUUID().toString()); // ID do Consumidor, quando há mais de consumidores por grupo
         properties.setProperty(ConsumerConfig.MAX_POLL_RECORDS_CONFIG,"1"); // Commit de mensagens de 1 em 1
-        properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
+        properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         properties.putAll(overrideProperties); // tudo que vem de Override vai para properties, podendo ser prorpiedades extras
         return properties;
     }
