@@ -1,6 +1,8 @@
 package br.com.alura.ecommerce;
 
+import br.com.alura.ecommerce.consumer.ConsumerService;
 import br.com.alura.ecommerce.consumer.KafkaService;
+import br.com.alura.ecommerce.consumer.ServiceRunner;
 import br.com.alura.ecommerce.dispatcher.KafkaDispatcher;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 
@@ -8,20 +10,13 @@ import java.math.BigDecimal;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
-public class FraudDetectorService {
+public class FraudDetectorService implements ConsumerService<Order> {
 
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
-        var fraudService = new FraudDetectorService();
-        try(var service = new KafkaService<>(FraudDetectorService.class.getSimpleName(), //Processo de desserialização de Order
-                "ECOMMERCE_NEW_ORDER",
-                fraudService::parse,
-                Map.of())) { // Nesse service não temos propriedades extras então passamos um mapa vazio.
-            service.run();
-        }
+    public static void main(String[] args) {
+        new ServiceRunner(FraudDetectorService::new).start(1); //permite a executar o serviço com multithread
     }
-
     private final KafkaDispatcher<Order> orderDispatcher = new KafkaDispatcher<>();
-    private void parse(ConsumerRecord<String, Message<Order>> record) throws ExecutionException, InterruptedException {
+    public void parse(ConsumerRecord<String, Message<Order>> record) throws ExecutionException, InterruptedException {
         System.out.println("---------------------------------------------");
         System.out.println("Processando new order, checking for fraud");
         System.out.println(record.key());
@@ -50,6 +45,16 @@ public class FraudDetectorService {
                     message.getId().continueWith(FraudDetectorService.class.getSimpleName()),
                     order);
         }
+    }
+
+    @Override
+    public String getConsumerGroup() {
+        return FraudDetectorService.class.getSimpleName();
+    }
+
+    @Override
+    public String getTopic() {
+        return "ECOMMERCE_NEW_ORDER";
     }
 
     private boolean isFraud(Order order) {
