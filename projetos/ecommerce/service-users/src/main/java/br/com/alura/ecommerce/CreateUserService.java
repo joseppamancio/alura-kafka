@@ -14,7 +14,7 @@ public class CreateUserService implements ConsumerService<Order> {
 
     CreateUserService() throws SQLException {
         this.database = new LocalDatabase("users_database");
-        this.database.createIfNotExists("create table if not exists users(" +
+        this.database.createIfNotExists("create table if not exists users (" +
                 "uuid varchar(200) primary key," +
                 "email varchar(200))");
     }
