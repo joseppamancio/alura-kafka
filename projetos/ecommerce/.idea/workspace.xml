@@ -4,12 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f27c3a2c-480a-4df3-aa67-295cb3819a9b" name="Changes" comment="Criando LocalDatabase.">
+    <list default="true" id="f27c3a2c-480a-4df3-aa67-295cb3819a9b" name="Changes" comment="Conclusão do Curso Kafka.">
+      <change afterPath="$PROJECT_DIR$/service-http-ecommerce/src/main/java/br/com/alura/ecommerce/OrdersDataBase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-http-ecommerce/target/classes/br/com/alura/ecommerce/OrdersDataBase.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/orders_database.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-fraud-detector/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service-fraud-detector/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-fraud-detector/src/main/java/br/com/alura/ecommerce/FraudDetectorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-fraud-detector/src/main/java/br/com/alura/ecommerce/FraudDetectorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-fraud-detector/src/main/java/br/com/alura/ecommerce/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-fraud-detector/src/main/java/br/com/alura/ecommerce/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-users/src/main/java/br/com/alura/ecommerce/CreateUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-users/src/main/java/br/com/alura/ecommerce/CreateUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-database/src/main/java/br/com/alura/ecommerce/database/LocalDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-database/src/main/java/br/com/alura/ecommerce/database/LocalDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-database/target/classes/br/com/alura/ecommerce/database/LocalDatabase.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-database/target/classes/br/com/alura/ecommerce/database/LocalDatabase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-http-ecommerce/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service-http-ecommerce/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-http-ecommerce/src/main/java/br/com/alura/ecommerce/NewOrderServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-http-ecommerce/src/main/java/br/com/alura/ecommerce/NewOrderServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-http-ecommerce/src/main/java/br/com/alura/ecommerce/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-http-ecommerce/src/main/java/br/com/alura/ecommerce/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-http-ecommerce/target/classes/br/com/alura/ecommerce/NewOrderServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/service-http-ecommerce/target/classes/br/com/alura/ecommerce/NewOrderServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-http-ecommerce/target/classes/br/com/alura/ecommerce/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/service-http-ecommerce/target/classes/br/com/alura/ecommerce/Order.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-users/target/classes/br/com/alura/ecommerce/CreateUserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/service-users/target/classes/br/com/alura/ecommerce/CreateUserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/frauds_database.db" beforeDir="false" afterPath="$PROJECT_DIR$/target/frauds_database.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +79,7 @@
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="br.com.alura.ecommerce" />
+      <recent name="br.com.alura.ecommerce.OrdersDataBase" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\User\Desktop\CURSOS\KAFKA\alura-kafka\projetos\ecommerce\service-email-new-order\src\main\java" />
@@ -81,7 +90,7 @@
       <recent name="br.com.alura.ecommerce" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.FraudDetectorService">
+  <component name="RunManager" selected="Application.EmailNewOrderService">
     <configuration name="BatchSendMessageService" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="br.com.alura.ecommerce.BatchSendMessageService" />
       <module name="service-users" />
@@ -273,8 +282,26 @@
       <option name="project" value="LOCAL" />
       <updated>1658877691722</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Idempotencia no FraudDetectorService.">
+      <created>1658964364459</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1658964364459</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -299,7 +326,9 @@
     <MESSAGE value="Consumindo Mensagens com AUTO_OFFSET_REST_CONFIG." />
     <MESSAGE value="Consumindo Mensagens com AUTO_OFFSET_REST_CONFIG earliest." />
     <MESSAGE value="Criando LocalDatabase." />
-    <option name="LAST_COMMIT_MESSAGE" value="Criando LocalDatabase." />
+    <MESSAGE value="Idempotencia no FraudDetectorService." />
+    <MESSAGE value="Conclusão do Curso Kafka." />
+    <option name="LAST_COMMIT_MESSAGE" value="Conclusão do Curso Kafka." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
