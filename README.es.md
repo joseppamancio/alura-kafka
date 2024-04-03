@@ -4,7 +4,6 @@
 [![Maven](https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apache-maven&logoColor=white)](https://maven.apache.org/)
 [![Kafka](https://img.shields.io/badge/Kafka-231F20?style=for-the-badge&logo=apache-kafka&logoColor=white)](https://kafka.apache.org/)
 
-
 # Comercio electrónico con Kafka
 ## 📄 Descripción del Proyecto
 Desarrollado durante el curso de Alura, este proyecto simula un sistema de comercio electrónico utilizando Apache Kafka como plataforma de mensajería. Implementado en Java, hace uso de Maven como gestor de dependencias.
