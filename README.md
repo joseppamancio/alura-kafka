@@ -3,8 +3,16 @@
 [![Kafka](https://img.shields.io/badge/Kafka-231F20?style=for-the-badge&logo=apache-kafka&logoColor=white)](https://kafka.apache.org/)
 
 # E-commerce com Kafka
-## Descrição do Projeto
+## 📄 Descrição do Projeto
 Desenvolvido durante o curso da Alura, este projeto simula um sistema de e-commerce utilizando Apache Kafka como plataforma de mensageria. Implementado em Java, faz uso do Maven como gerenciador de dependências.
+
+## 📦 Estrutura
+A arquitetura possuium um estilo de uma aplicação como uma coleção de serviços que são:  
+* Altamente mantíveis e testáveis
+* Fracamente acoplados
+* Independentes na implantação
+* Organizados em torno das capacidades de negócios
+* Capazes de serem desenvolvidos por uma pequena equipe.
 
 ## ⚙️ Tecnologias
 - Java
