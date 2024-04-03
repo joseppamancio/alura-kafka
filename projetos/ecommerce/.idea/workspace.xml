@@ -26,13 +26,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="useMavenConfig" value="true" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
   <component name="ProjectId" id="2Bcof90fndXNL2nehaQUBLlBQWH" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -45,8 +41,9 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "jdk.selected.JAVA_MODULE": "Java 11",
+    "kotlin-language-version-configured": "true",
     "last_directory_selection": "C:/Users/User/Desktop/CURSOS/KAFKA/alura-kafka/projetos/ecommerce/service-email-new-order/src/main/java/br/com/alura/ecommerce",
-    "last_opened_file_path": "C:/Users/User/Desktop/CURSOS/KAFKA/alura-kafka/projetos/ecommerce/service-email-new-order/src/main/java",
+    "last_opened_file_path": "C:/Users/User/Desktop/potifolio/alura-kafka",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
